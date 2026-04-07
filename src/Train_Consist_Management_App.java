@@ -27,7 +27,7 @@ class PassengerBogie {
     }
 }
 
-public class Train_Consist_Management_App {
+public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
