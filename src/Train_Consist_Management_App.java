@@ -1,33 +1,52 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * UC6: Map Bogie to Capacity using HashMap
- */
+// Reuse Bogie class from UC7
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (Capacity: " + capacity + ")";
+    }
+}
+
 public class Train_Consist_Management_App {
 
     public static void main(String[] args) {
 
-        System.out.println("=================================");
-        System.out.println("  UC6: Map Bogie to Capacity ");
-        System.out.println("=================================\n");
+        System.out.println("=== Train Consist Management App ===");
 
-        // Create HashMap for bogie → capacity
-        Map<String, Integer> bogieCapacity = new HashMap<>();
+        // Create list of bogies (same as UC7)
+        List<Bogie> bogies = new ArrayList<>();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 24));
 
-        // Insert bogie-capacity mappings
-        bogieCapacity.put("First Class", 24);
-        bogieCapacity.put("Cargo", 120);
-        bogieCapacity.put("Sleeper", 72);
-        bogieCapacity.put("AC Chair", 56);
+        // Filter bogies with capacity > 60 using Stream
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        // Display capacity details
-        System.out.println("Bogie Capacity Details:\n");
-
-        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        // Display filtered bogies
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        for (Bogie b : filteredBogies) {
+            System.out.println(b);
         }
 
-        System.out.println("\nUC6 bogie-capacity mapping completed...");
+        // Show original list (to prove it is unchanged)
+        System.out.println("\nOriginal Bogie List (Unchanged):");
+        for (Bogie b : bogies) {
+            System.out.println(b);
+        }
+
+        // Program continues...
     }
 }
